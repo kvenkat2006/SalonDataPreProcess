@@ -1,0 +1,29 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+	
+	
+	<bean id="placeholderConfig"   class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="file:preprocessor-beans.properties" />
+	</bean>
+	
+	<bean name="readerService" class="org.mbda.salon.preprocess.ReadWriteService">
+		<constructor-arg ref="${reader-name}"/>
+	</bean>
+	
+	<bean name="inputProcessor" class="org.mbda.salon.preprocess.InputProcessor">
+		<constructor-arg value="${input-folder-name}"/>
+		<constructor-arg value="${filename-pattern}"/>
+		<constructor-arg value="${output-folder-name}"/>
+
+	</bean>
+	
+	<!--
+	<bean name="fileReaderAlt" class="org.kumar.justspring.FileReaderAlt">
+		<constructor-arg value="${file-name}"/>
+		<constructor-arg value="${filename-pattern}"/>
+	</bean>
+	-->
+
+</beans>
